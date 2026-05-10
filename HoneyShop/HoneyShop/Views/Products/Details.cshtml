@@ -1,0 +1,64 @@
+@model HoneyShop.Models.Product
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h1>@Model.Emoji @Model.Name</h1>
+    <p>@Model.Badge</p>
+</div>
+
+<div class="container" style="padding: 60px 20px; max-width: 800px; margin: 0 auto;">
+
+    <!-- Картинка с голям emoji -->
+    <div class="product-image @Model.ImageClass" style="height:280px; border-radius:20px; font-size:8rem; margin-bottom:30px; position:relative;">
+        @Model.Emoji
+        @if (!string.IsNullOrEmpty(Model.Badge))
+        {
+            <span class="product-badge" style="font-size:1rem; padding:8px 18px;">@Model.Badge</span>
+        }
+    </div>
+
+    <!-- Информация -->
+    <div style="background:white; padding:40px; border-radius:15px; box-shadow:0 4px 20px rgba(180,100,0,0.12);">
+        <h2 style="font-family:'Playfair Display',serif; font-size:2rem; color:#5C3D00; margin-bottom:15px;">
+            @Model.Name
+        </h2>
+        <p style="font-size:1.1rem; color:#5C3D00; line-height:1.9; margin-bottom:30px;">
+            @Model.Description
+        </p>
+
+        <div style="display:flex; gap:20px; margin-bottom:30px; flex-wrap:wrap;">
+            <div style="background:#FFF8E7; padding:20px 30px; border-radius:10px; border:2px solid #F5C842; text-align:center; flex:1;">
+                <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:1px; color:#8B5E0A;">Цена</div>
+                <div style="font-family:'Playfair Display',serif; font-size:2.2rem; color:#D4860A; font-weight:900;">
+                    @Model.Price.ToString("F2") лв.
+                </div>
+                <div style="font-size:0.85rem; color:#888;">за @Model.Weight</div>
+            </div>
+            <div style="background:#FFF8E7; padding:20px 30px; border-radius:10px; border:2px solid #F5C842; text-align:center; flex:1;">
+                <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:1px; color:#8B5E0A;">Наличност</div>
+                <div style="font-size:1.5rem; margin-top:8px;">
+                    @if (Model.IsAvailable)
+                    {
+                        <span style="color:green;">✅ Налично</span>
+                    }
+                    else
+                    {
+                        <span style="color:#cc0000;">❌ Изчерпано</span>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            @if (Model.IsAvailable)
+            {
+                @Html.ActionLink("📞 Поръчай сега", "Contact", "Home", null, new { @class = "btn-primary" })
+            }
+            @Html.ActionLink("← Обратно към продуктите", "Index", "Products", null, new { style = "color:#8B5E0A; font-size:0.95rem; padding:14px 0; display:inline-block;" })
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,82 @@
+@model List<HoneyShop.Models.Product>
+@{
+    ViewBag.Title = "Начало";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Hero секция -->
+<section class="hero">
+    <div class="container">
+        <h2>🍯 Натурален пчелен мед</h2>
+        <p>Директно от нашите пчелини в планините на България. 100% натурален, без добавки, с гарантиран произход.</p>
+        @Html.ActionLink("Разгледай продуктите", "Index", "Products", null, new { @class = "btn-primary" })
+    </div>
+</section>
+
+<!-- Особености -->
+<section class="features">
+    <div class="container">
+        <h2>Защо нашият мед?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🌿</span>
+                <h3>100% Натурален</h3>
+                <p>Без консерванти, без оцветители, без добавена захар. Само чист пчелен мед.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🏔️</span>
+                <h3>Планински произход</h3>
+                <p>Пчелините ни се намират далеч от градове и промишлени зони.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔬</span>
+                <h3>Лабораторно тестван</h3>
+                <p>Всяка партида е изследвана и притежава сертификат за качество.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Препоръчани продукти -->
+<section class="products-section">
+    <div class="container">
+        <h2>Топ продукти</h2>
+        <div class="products-grid">
+            @foreach (var product in Model)
+            {
+                <div class="product-card">
+                    <div class="product-image @product.ImageClass">
+                        @product.Emoji
+                        @if (!string.IsNullOrEmpty(product.Badge))
+                        {
+                            <span class="product-badge">@product.Badge</span>
+                        }
+                    </div>
+                    <div class="product-info">
+                        <h3>@product.Name</h3>
+                        <p>@product.Description</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                @product.Price.ToString("F2") лв.
+                                <span>/ @product.Weight</span>
+                            </div>
+                            @Html.ActionLink("Виж", "Details", "Products", new { id = product.Id }, new { @class = "btn-buy" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="section-center">
+            @Html.ActionLink("Виж всички продукти →", "Index", "Products", null, new { @class = "btn-primary" })
+        </div>
+    </div>
+</section>
+
+<!-- Банер -->
+<section class="honey-banner">
+    <div class="container">
+        <h2>🐝 Свеж мед директно от пчелина</h2>
+        <p>Поръчайте онлайн и доставяме до вашия дом в България в рамките на 2-3 работни дни.</p>
+        @Html.ActionLink("Поръчай сега", "Contact", "Home", null, new { @class = "btn-primary" })
+    </div>
+</section>

@@ -1,0 +1,45 @@
+@model List<HoneyShop.Models.Product>
+@{
+    ViewBag.Title = "Продукти";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h1>🍯 Нашите продукти</h1>
+    <p>Открийте разнообразието от натурални пчелни медове</p>
+</div>
+
+<div class="products-page container">
+    <div class="products-grid">
+        @foreach (var product in Model)
+        {
+            <div class="product-card">
+                <div class="product-image @product.ImageClass">
+                    @product.Emoji
+                    @if (!string.IsNullOrEmpty(product.Badge))
+                    {
+                        <span class="product-badge">@product.Badge</span>
+                    }
+                </div>
+                <div class="product-info">
+                    <h3>@product.Name</h3>
+                    <p>@product.Description</p>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            @product.Price.ToString("F2") лв.
+                            <span>/ @product.Weight</span>
+                        </div>
+                        @if (product.IsAvailable)
+                        {
+                            @Html.ActionLink("Детайли", "Details", "Products", new { id = product.Id }, new { @class = "btn-buy" })
+                        }
+                        else
+                        {
+                            <span style="color:#999; font-size:0.85rem;">Изчерпан</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

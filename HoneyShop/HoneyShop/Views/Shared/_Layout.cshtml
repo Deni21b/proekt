@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Пчелен Рай</title>
+    <link href="@Url.Content("~/Content/css/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <span class="bee-icon">🐝</span>
+                    <div class="logo-text">
+                        <h1>Пчелен Рай</h1>
+                        <p>Натурален пчелен мед от България</p>
+                    </div>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li>@Html.ActionLink("Начало", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Продукти", "Index", "Products")</li>
+                        <li>@Html.ActionLink("За нас", "About", "Home")</li>
+                        <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="honeycomb-divider"></div>
+    </header>
+
+    <main class="main-content">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>🐝 Пчелен Рай</h3>
+                    <p>Предлагаме 100% натурален пчелен мед, събран от нашите пчелини в планините на България.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Бързи връзки</h3>
+                    <ul>
+                        <li>@Html.ActionLink("Начало", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Продукти", "Index", "Products")</li>
+                        <li>@Html.ActionLink("За нас", "About", "Home")</li>
+                        <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Контакти</h3>
+                    <p>📍 с. Пчелово, България</p>
+                    <p>📞 +359 888 123 456</p>
+                    <p>✉️ info@pchelen-raj.bg</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; @DateTime.Now.Year Пчелен Рай. Всички права запазени.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
